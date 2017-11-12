@@ -33,5 +33,5 @@
         "@ionic/app-scripts": "3.1.0",
         "typescript": "2.4.2"
     },
-    "description": "The Ionic-part of the Ask Around project."
+    "description": "The Ionic application of the Ask Around project."
 }
