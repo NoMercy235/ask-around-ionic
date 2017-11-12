@@ -1,6 +1,6 @@
 ## Ask Around
 
-This is the Ionic application of the Ask Around project which will use the Node x Express API.
+This is the Ionic application of the Ask Around project which will use the [Node x Express API](https://github.com/NoMercy235/ask-around-api).
 
 Task list:
  - [ ] A login system (possibly allow login with google+ as well).
