@@ -1,0 +1,20 @@
+<ion-menu [content]="inputNav">
+
+    <ion-header>
+        <ion-toolbar [color]="'primary'">
+            <ion-title>Ask Around</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+        <ion-list>
+            <ion-list-header [color]="'secondary'">Navigate</ion-list-header>
+            <button ion-item menuClose (click)="goToQuestions()">Questions</button>
+            <button ion-item menuClose (click)="goToMyQuestions()">My Questions</button>
+            <button ion-item menuClose (click)="goToProfile()">Profile</button>
+            <button ion-item menuClose (click)="goToSettings()">Settings</button>
+            <button ion-item menuClose (click)="logout()">Logout</button>
+        </ion-list>
+    </ion-content>
+
+</ion-menu>

@@ -4,10 +4,7 @@
         "no-unused-variable": [
             true
         ],
-        "indent": [
-            "spaces",
-            4
-        ]
+        "indent": ["spaces", 4]
     },
     "rulesDirectory": [
         "node_modules/tslint-eslint-rules/dist/rules"
