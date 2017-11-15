@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
-import { IonicStorageModule } from "@ionic/storage";
 import { UserSettingsService } from "./user-settings.service";
 import { HttpClientModule } from "@angular/common/http";
+import { SidemenuModule } from "../sidemenu/sidemenu.module";
 
 @NgModule({
     imports: [
         HttpClientModule,
-        IonicStorageModule.forRoot(),
+        SidemenuModule
     ],
     exports: [
         HttpClientModule,
+        SidemenuModule,
     ],
     declarations: [],
     providers: [

@@ -4,6 +4,7 @@ import { QuestionsPage } from "../../pages/questions/questions";
 import { MyQuestionsPage } from "../../pages/my-questions/my-questions";
 import { ProfilePage } from "../../pages/profile/profile";
 import { SettingsPage } from "../../pages/settings/settings";
+import { AuthenticationPage } from "../../pages/authentication/authentication";
 
 @Component({
     selector: 'ask-sidemenu',
@@ -31,6 +32,6 @@ export class SidemenuComponent {
     }
 
     logout(): void {
-        // TODO: logout logic.
+        this.inputNav.setRoot(AuthenticationPage);
     }
 }

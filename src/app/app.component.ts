@@ -3,7 +3,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { Component, ViewChild } from "@angular/core";
-import { QuestionsPage } from "../pages/questions/questions";
+import { AuthenticationPage } from "../pages/authentication/authentication";
 
 @Component({
     templateUrl: 'app.html'
@@ -11,9 +11,7 @@ import { QuestionsPage } from "../pages/questions/questions";
 export class MyApp {
     @ViewChild(Nav) nav: Nav;
 
-    rootPage: any = QuestionsPage;
-
-    pages: Array<{ title: string, component: any }>;
+    rootPage: any = AuthenticationPage;
 
     constructor(
         public platform: Platform,
@@ -32,9 +30,4 @@ export class MyApp {
         });
     }
 
-    openPage(page) {
-        // Reset the content nav to have just this page
-        // we wouldn't want the back button to show in this scenario
-        this.nav.setRoot(page.component);
-    }
 }
