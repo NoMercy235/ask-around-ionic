@@ -1,8 +1,8 @@
 {
-  "name": "ask-around-ionic",
-  "app_id": "46293fc5",
-  "type": "ionic-angular",
-  "integrations": {
-    "cordova": {}
-  }
+    "name": "ask-around-ionic",
+    "app_id": "46293fc5",
+    "type": "ionic-angular",
+    "integrations": {
+        "cordova": {}
+    }
 }

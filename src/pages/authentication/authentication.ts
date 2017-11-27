@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { MainPage } from "../main/main";
+import { IonicPage, NavController, ToastOptions } from 'ionic-angular';
 import { AuthenticationController } from "./authentication.controller";
+import { Keyboard } from "@ionic-native/keyboard";
+import { ToastService } from "../../app/shared/toast.service";
+import { MainPage } from "../main/main";
 
 @IonicPage()
 @Component({
@@ -10,20 +12,51 @@ import { AuthenticationController } from "./authentication.controller";
 })
 export class AuthenticationPage {
 
+    public showFooter: boolean = true;
+
+    private toastId: number;
+    private toastOptions: ToastOptions = {
+        duration: 2000,
+        position: 'bottom',
+        showCloseButton: true
+    };
+
     constructor(
         public navCtrl: NavController,
-        public navParams: NavParams,
-        public authenticateController: AuthenticationController,
+        public authenticateCtrl: AuthenticationController,
+        public keyboard: Keyboard,
+        public toastService: ToastService,
     ) {
-        authenticateController.onInit();
+        this.authenticateCtrl.onInit();
+
+        this.keyboard.onKeyboardShow().subscribe(() => this.showFooter = false);
+        this.keyboard.onKeyboardHide().subscribe(() => this.showFooter = true);
     }
 
-    public async ionViewDidLoad(): Promise<void> {
-        await this.authenticateController.login('admin@askaround.com', '123456');
-        console.log('should redirect');
+    public ionViewDidLoad(): void {
+        this.authenticateCtrl.hasToken().then((hasToken: boolean) => {
+            if (hasToken) this.navCtrl.push(MainPage);
+        });
     }
 
-    goToMain(): void {
+    public async login(): Promise<void> {
+        this.toastId = this.toastService.create(this.toastOptions);
+
+        if (this.authenticateCtrl.fg.invalid) {
+            this.toastService.get(this.toastId).setMessage('Input is invalid. Please check above for more details.');
+            this.toastService.get(this.toastId).present();
+            return
+        }
+
+        const formValues = this.authenticateCtrl.fg.value;
+        const result = await this.authenticateCtrl.login(formValues.email, formValues.password);
+
+        if (!result) {
+            this.toastService.get(this.toastId).setMessage('Email or password are incorrect.');
+            this.toastService.get(this.toastId).present();
+            return;
+        }
+
         this.navCtrl.push(MainPage);
     }
 }

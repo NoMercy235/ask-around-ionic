@@ -14,19 +14,18 @@ export class HttpService {
 
     async get(endpoint: string, options: { headers: HttpHeaders, params: HttpParams }): Promise<any> {
         return this.http.get(Globals.API +  endpoint, options)
-            .catch(this.handleHttpError)
+            .catch(HttpService.handleHttpError)
             .toPromise();
     }
 
     async post(endpoint: string, body: any): Promise<any> {
         return await this.http.post(Globals.API +  endpoint, body)
-            .catch(this.handleHttpError)
+            .catch(HttpService.handleHttpError)
             .toPromise();
     }
 
 
-    handleHttpError(err: any, caught: Observable<ArrayBuffer>): ObservableInput<any> {
-        console.error(err);
+    private static handleHttpError(err: any, caught: Observable<ArrayBuffer>): ObservableInput<any> {
         return Observable.empty();
     }
 

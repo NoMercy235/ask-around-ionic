@@ -1,27 +1,36 @@
 import { Injectable } from '@angular/core';
 import { Storage } from "@ionic/storage";
 
-export interface UserSettings {
-
-}
-
 @Injectable()
 export class UserSettingsService {
 
+    private token: string;
+
     constructor(
         protected storage: Storage,
-        // protected events: Events,
     ) { }
 
-    // private setStorage(name: string, val: any): Promise<any> {
-    //     return this.storage.set(name, val);
-    // }
-    //
-    // private getStorage(name: string): Promise<any> {
-    //     return this.storage.get(name);
-    // }
+    public setStorage(name: string, val: any): Promise<any> {
+        return this.storage.set(name, val);
+    }
 
-    clearStorage(): void {
+    public getStorage(name: string): Promise<any> {
+        return this.storage.get(name);
+    }
+
+    public deleteFromStorage(name: string): Promise<any> {
+        return this.storage.remove(name);
+    }
+
+    public clearStorage(): void {
         this.storage.clear();
+    }
+
+    public setToken(token: string): void {
+        this.token = token;
+    }
+
+    public getToken(): string {
+        return this.token;
     }
 }

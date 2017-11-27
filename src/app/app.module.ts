@@ -8,6 +8,7 @@ import { MyApp } from './app.component';
 import { PagesModule } from "../pages/pages.module";
 import { IonicStorageModule } from "@ionic/storage";
 import { SharedModule } from "./shared/shared.module";
+import { Keyboard } from "@ionic-native/keyboard";
 
 @NgModule({
     declarations: [
@@ -27,6 +28,7 @@ import { SharedModule } from "./shared/shared.module";
     providers: [
         StatusBar,
         SplashScreen,
+        Keyboard,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         AndroidPermissions,
     ]

@@ -5,6 +5,7 @@ import { MyQuestionsPage } from "../../pages/my-questions/my-questions";
 import { ProfilePage } from "../../pages/profile/profile";
 import { SettingsPage } from "../../pages/settings/settings";
 import { AuthenticationPage } from "../../pages/authentication/authentication";
+import { UserSettingsService } from "../shared/user-settings.service";
 
 @Component({
     selector: 'ask-sidemenu',
@@ -13,7 +14,9 @@ import { AuthenticationPage } from "../../pages/authentication/authentication";
 export class SidemenuComponent {
     @Input() inputNav: NavController;
 
-    constructor() {}
+    constructor(
+        public userSettings: UserSettingsService,
+    ) { }
 
     goToQuestions(): void {
         this.inputNav.push(QuestionsPage);
@@ -32,6 +35,8 @@ export class SidemenuComponent {
     }
 
     logout(): void {
+        this.userSettings.setToken('');
+        this.userSettings.deleteFromStorage('authToken');
         this.inputNav.setRoot(AuthenticationPage);
     }
 }
