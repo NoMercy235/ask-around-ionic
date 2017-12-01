@@ -4,6 +4,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { Component, ViewChild } from "@angular/core";
 import { AuthenticationPage } from "../pages/authentication/authentication";
+import { Keyboard } from "@ionic-native/keyboard";
 
 @Component({
     templateUrl: 'app.html'
@@ -17,6 +18,7 @@ export class MyApp {
         public platform: Platform,
         public statusBar: StatusBar,
         public splashScreen: SplashScreen,
+        public keyboard: Keyboard,
     ) {
         this.initializeApp();
     }
@@ -25,6 +27,7 @@ export class MyApp {
         this.platform.ready().then(() => {
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
+            this.keyboard.disableScroll(true);
             this.statusBar.styleDefault();
             this.splashScreen.hide();
         });
