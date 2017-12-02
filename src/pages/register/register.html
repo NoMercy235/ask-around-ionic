@@ -1,0 +1,44 @@
+<ion-header>
+    <ion-navbar [color]="'primary'">
+        <ion-title>Register a new account</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="aa-with-background">
+
+    <div col-10 offset-1>
+        <form [formGroup]="registerCtrl.fg">
+            <ion-item class="aa-input">
+                <ion-label floating>First name</ion-label>
+                <ion-input [type]="'text'" [formControlName]="'firstName'"></ion-input>
+            </ion-item>
+
+            <ion-item class="aa-input">
+                <ion-label floating>Last name</ion-label>
+                <ion-input [type]="'text'" [formControlName]="'lastName'"></ion-input>
+            </ion-item>
+
+            <ion-item class="aa-input">
+                <ion-label floating>Email</ion-label>
+                <ion-input [type]="'text'" [formControlName]="'email'"></ion-input>
+            </ion-item>
+
+            <ion-item class="aa-input">
+                <ion-label floating>Password</ion-label>
+                <ion-input [type]="'password'" [formControlName]="'password'"></ion-input>
+            </ion-item>
+
+            <ion-item class="aa-input">
+                <ion-label floating>Repeat password</ion-label>
+                <ion-input [type]="'password'" [formControlName]="'repeatPassword'"></ion-input>
+            </ion-item>
+        </form>
+    </div>
+
+    <ion-footer *ngIf="showFooter" padding>
+        <button ion-button full (click)="register()">
+            Register
+        </button>
+    </ion-footer>
+
+</ion-content>

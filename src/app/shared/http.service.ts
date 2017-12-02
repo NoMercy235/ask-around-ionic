@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Observable, ObservableInput } from "rxjs/Observable";
 import { Globals } from "./globals";
+import { BaseModel } from "./base.model";
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/empty';
 
@@ -18,7 +19,7 @@ export class HttpService {
             .toPromise();
     }
 
-    async post(endpoint: string, body: any): Promise<any> {
+    async post(endpoint: string, body: BaseModel): Promise<any> {
         return await this.http.post(Globals.API +  endpoint, body)
             .catch(HttpService.handleHttpError)
             .toPromise();

@@ -5,10 +5,12 @@ import { ProfilePageModule } from "./profile/profile.module";
 import { SettingsPageModule } from "./settings/settings.module";
 import { MainPageModule } from "./main/main.module";
 import { AuthenticationPageModule } from "./authentication/authentication.module";
+import { RegisterPageModule } from "./register/register.module";
 
 @NgModule({
     imports: [
         AuthenticationPageModule,
+        RegisterPageModule,
         MainPageModule,
         QuestionsPageModule,
         MyQuestionsPageModule,

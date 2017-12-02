@@ -1,17 +1,16 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, ToastOptions } from 'ionic-angular';
-import { AuthenticationController } from "./authentication.controller";
+import { IonicPage, NavController, NavParams, ToastOptions } from 'ionic-angular';
+import { RegisterController } from "./register.controller";
 import { Keyboard } from "@ionic-native/keyboard";
 import { ToastService } from "../../app/shared/toast.service";
 import { MainPage } from "../main/main";
-import { RegisterPage } from "../register/register";
 
 @IonicPage()
 @Component({
-    selector: 'page-authentication',
-    templateUrl: 'authentication.html',
+    selector: 'page-register',
+    templateUrl: 'register.html',
 })
-export class AuthenticationPage {
+export class RegisterPage {
 
     public showFooter: boolean = true;
 
@@ -24,11 +23,12 @@ export class AuthenticationPage {
 
     constructor(
         public navCtrl: NavController,
-        public authenticateCtrl: AuthenticationController,
+        public navParams: NavParams,
+        public registerCtrl: RegisterController,
         public keyboard: Keyboard,
         public toastService: ToastService,
     ) {
-        this.authenticateCtrl.onInit();
+        this.registerCtrl.onInit();
 
         if ((<any>window).cordova) {
             this.keyboard.disableScroll(true); // TODO: should not be here?
@@ -37,26 +37,27 @@ export class AuthenticationPage {
         }
     }
 
-    public ionViewDidLoad(): void {
-        this.authenticateCtrl.hasToken().then((hasToken: boolean) => {
-            if (hasToken) this.navCtrl.push(MainPage);
-        });
-    }
-
-    public async login(): Promise<void> {
+    public async register(): Promise<void> {
         this.toastId = this.toastService.create(this.toastOptions);
 
-        if (this.authenticateCtrl.fg.invalid) {
+        if (this.registerCtrl.fg.invalid) {
             this.toastService.get(this.toastId).setMessage('Input is invalid. Please check above for more details.');
             this.toastService.get(this.toastId).present();
-            return
+            return;
         }
 
-        const formValues = this.authenticateCtrl.fg.value;
-        const result = await this.authenticateCtrl.login(formValues.email, formValues.password);
+        const formValues: any = this.registerCtrl.fg.value;
+
+        if (formValues.password !== formValues.repeatPassword) {
+            this.toastService.get(this.toastId).setMessage('Passwords do not match.');
+            this.toastService.get(this.toastId).present();
+            return;
+        }
+
+        const result = await this.registerCtrl.register(formValues);
 
         if (!result) {
-            this.toastService.get(this.toastId).setMessage('Email or password are incorrect.');
+            this.toastService.get(this.toastId).setMessage('An error has occured.');
             this.toastService.get(this.toastId).present();
             return;
         }
@@ -64,7 +65,4 @@ export class AuthenticationPage {
         this.navCtrl.push(MainPage);
     }
 
-    public goToRegister(): void {
-        this.navCtrl.push(RegisterPage);
-    }
 }

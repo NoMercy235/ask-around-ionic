@@ -27,9 +27,11 @@ export class MyApp {
         this.platform.ready().then(() => {
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
-            this.keyboard.disableScroll(true);
-            this.statusBar.styleDefault();
-            this.splashScreen.hide();
+            if ((<any>window).cordova) {
+                this.keyboard.disableScroll(true);
+                this.statusBar.styleDefault();
+                this.splashScreen.hide();
+            }
         });
     }
 

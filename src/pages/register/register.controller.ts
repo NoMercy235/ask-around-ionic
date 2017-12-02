@@ -3,11 +3,11 @@ import { Injectable } from "@angular/core";
 import { HttpService } from "../../app/shared/http.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { UserSettingsService } from "../../app/shared/user-settings.service";
-import { AuthenticationModel } from "./authentication.model";
+import { RegisterModel } from "./register.model";
 
 @Injectable()
-export class AuthenticationController extends BaseController {
-    protected apiEndpoint: string | Function = '/auth/authenticate/';
+export class RegisterController extends BaseController {
+    protected apiEndpoint: string | Function = '/auth/register';
     protected apiModelEndpoint: string | Function = null;
 
     public fg: FormGroup;
@@ -22,35 +22,22 @@ export class AuthenticationController extends BaseController {
 
     public onInit(): void {
         this.fg = this.formBuilder.group({
+            firstName: ['', [Validators.required]],
+            lastName: ['', [Validators.required]],
             email: ['', [Validators.required, Validators.email]],
             password: ['', Validators.required],
+            repeatPassword: ['', Validators.required],
         });
     }
 
-    public hasToken(): Promise<boolean> {
-        return this.userSettings.getStorage('authToken').then((token: string) => {
-            if (token) {
-                this.userSettings.setToken(token);
-                return true;
-            } else {
-                return false;
-            }
-        });
-    }
+    public async register(formValues: RegisterModel): Promise<any> {
 
-    public async login(username: string, password: string): Promise<any> {
-        const body: AuthenticationModel = {
-            email: username,
-            password: password
-        };
-
-        const result = await this.httpService.post(this.getApiEndpoint(), body);
+        const result = await this.httpService.post(this.getApiEndpoint(), formValues);
 
         if (result) {
             this.userSettings.setToken(result.token);
             this.userSettings.setStorage('authToken', result.token);
         }
-
         return result;
     }
 }

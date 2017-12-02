@@ -27,6 +27,12 @@
         </form>
     </div>
 
+    <div col-10 offset-1>
+        <p class="aa-text aa-small">
+            No account yet? Click <span class="aa-red-text" (click)="goToRegister()">here</span> to create one!
+        </p>
+    </div>
+
     <ion-footer *ngIf="showFooter" padding>
         <button ion-button full (click)="login()">
             Sign in

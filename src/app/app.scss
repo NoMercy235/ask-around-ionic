@@ -15,8 +15,18 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+.aa-with-background {
+    background: url('../assets/imgs/background.jpg') no-repeat;
+    background-size: 100% 100%;
+}
+
+
 .aa-text {
     color: grey;
     text-align: center;
     font-size: 1.5em;
+}
+
+.aa-text.aa-small {
+    font-size: 1em !important;
 }
