@@ -5,6 +5,7 @@ import { Keyboard } from "@ionic-native/keyboard";
 import { ToastService } from "../../app/shared/toast.service";
 import { MainPage } from "../main/main";
 import { RegisterPage } from "../register/register";
+import { Globals } from "../../app/shared/globals";
 
 @IonicPage()
 @Component({
@@ -62,6 +63,10 @@ export class AuthenticationPage {
         }
 
         this.navCtrl.push(MainPage);
+    }
+
+    public handleKeyPress(keyCode: number): void {
+        if (keyCode === Globals.KEY_CODES.ENTER) this.login();
     }
 
     public goToRegister(): void {

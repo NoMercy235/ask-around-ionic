@@ -22,7 +22,7 @@
 
             <ion-item class="aa-input">
                 <ion-label floating>Password</ion-label>
-                <ion-input [type]="'password'" [formControlName]="'password'"></ion-input>
+                <ion-input [type]="'password'" [formControlName]="'password'" (keypress)="handleKeyPress($event.keyCode)"></ion-input>
             </ion-item>
         </form>
     </div>

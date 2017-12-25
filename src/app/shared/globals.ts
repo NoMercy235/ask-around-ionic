@@ -15,4 +15,8 @@ export class Globals {
             changeRinger: 'changeRinger',
         }
     };
+
+    public static KEY_CODES = {
+        ENTER: 13,
+    };
 }
