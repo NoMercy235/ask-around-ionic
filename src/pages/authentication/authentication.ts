@@ -31,13 +31,13 @@ export class AuthenticationPage {
         this.authenticateCtrl.onInit();
 
         if ((<any>window).cordova) {
-            this.keyboard.disableScroll(true); // TODO: should not be here?
             this.keyboard.onKeyboardShow().subscribe(() => this.showFooter = false);
             this.keyboard.onKeyboardHide().subscribe(() => this.showFooter = true);
         }
     }
 
     public ionViewDidLoad(): void {
+        this.keyboard.disableScroll(true); // TODO: should not be here?
         this.authenticateCtrl.hasToken().then((hasToken: boolean) => {
             if (hasToken) this.navCtrl.push(MainPage);
         });
