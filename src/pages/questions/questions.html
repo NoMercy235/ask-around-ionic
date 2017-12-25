@@ -9,5 +9,24 @@
 
 
 <ion-content>
-    A list of all available questions inside the app.
+    <ion-list *ngIf="questions">
+        <ion-item *ngFor="let question of questions" class="aa-no-padding">
+            <ion-card>
+                <ion-card-title class="aa-question-title">
+                    <h2>
+                        {{ question.title }}
+                    </h2>
+                </ion-card-title>
+                <hr>
+                <ion-card-content class="aa-question-content">
+                    {{ question.content }}
+                </ion-card-content>
+                <hr>
+                <div col-12>
+                    <div col-6 class="aa-question-author">By: {{ question._creator?.firstName + ' ' + question._creator?.lastName }}</div>
+                    <div col-6 class="aa-question-date">On: {{ question.created_at | date: 'dd/MM/yyyy hh:mm:ss' }}</div>
+                </div>
+            </ion-card>
+        </ion-item>
+    </ion-list>
 </ion-content>
