@@ -6,6 +6,7 @@ import { ToastService } from "../../app/shared/toast.service";
 import { MainPage } from "../main/main";
 import { RegisterPage } from "../register/register";
 import { Globals } from "../../app/shared/globals";
+import { LoadingService } from "../../app/shared/loading.service";
 
 @IonicPage()
 @Component({
@@ -28,6 +29,7 @@ export class AuthenticationPage {
         public authenticateCtrl: AuthenticationController,
         public keyboard: Keyboard,
         public toastService: ToastService,
+        public loadingService: LoadingService,
     ) {
         this.authenticateCtrl.onInit();
 
@@ -53,6 +55,8 @@ export class AuthenticationPage {
             return
         }
 
+        const loadingId = this.loadingService.create({ content: 'Please wait', dismissOnPageChange: true });
+
         const formValues = this.authenticateCtrl.fg.value;
         const result = await this.authenticateCtrl.login(formValues.email, formValues.password);
 
@@ -62,6 +66,7 @@ export class AuthenticationPage {
             return;
         }
 
+        this.loadingService.dismiss(loadingId);
         this.navCtrl.push(MainPage);
     }
 

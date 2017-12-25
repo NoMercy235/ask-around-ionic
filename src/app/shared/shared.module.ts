@@ -5,6 +5,7 @@ import { SidemenuModule } from "../sidemenu/sidemenu.module";
 import { HttpService } from "./http.service";
 import { EventsService } from "./events.service";
 import { ToastService } from "./toast.service";
+import { LoadingService } from "./loading.service";
 
 @NgModule({
     imports: [
@@ -21,6 +22,7 @@ import { ToastService } from "./toast.service";
         HttpService,
         EventsService,
         ToastService,
+        LoadingService,
     ],
 })
 export class SharedModule {

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BaseController } from "../../app/shared/base.controller";
 import { HttpService } from "../../app/shared/http.service";
-import { UserSettingsService } from "../../app/shared/user-settings.service";
 import { Question } from "../../app/models/question.model";
 
 @Injectable()
@@ -12,7 +11,6 @@ export class QuestionsController extends BaseController {
 
     constructor(
         public httpService: HttpService,
-        public userSettings: UserSettingsService,
     ) {
         super();
     }
