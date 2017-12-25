@@ -11,6 +11,7 @@ import { LoadingService } from "../../app/shared/loading.service";
 })
 export class QuestionsPage {
     public questions: Question[];
+    public showInfinite: boolean = true;
 
     private loadingId: number;
 
@@ -26,6 +27,17 @@ export class QuestionsPage {
         this.questionsCtrl.getQuestions().then((data: Question[]) => {
             this.questions = data;
             this.loadingService.dismiss(this.loadingId);
+        });
+    }
+
+    public fetchMoreQuestions(infiniteScroll: any): void {
+        this.questionsCtrl.getQuestions(true).then((data: Question[]) => {
+            if (!data.length) {
+                this.showInfinite = false;
+                return;
+            }
+            this.questions.push(...data);
+            infiniteScroll.complete();
         });
     }
 }

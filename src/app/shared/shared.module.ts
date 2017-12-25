@@ -6,6 +6,7 @@ import { HttpService } from "./http.service";
 import { EventsService } from "./events.service";
 import { ToastService } from "./toast.service";
 import { LoadingService } from "./loading.service";
+import { QueryParamsService } from "./query-params.service";
 
 @NgModule({
     imports: [
@@ -23,6 +24,7 @@ import { LoadingService } from "./loading.service";
         EventsService,
         ToastService,
         LoadingService,
+        QueryParamsService,
     ],
 })
 export class SharedModule {

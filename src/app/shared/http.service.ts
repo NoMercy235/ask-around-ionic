@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, ObservableInput } from "rxjs/Observable";
 import { Globals } from "./globals";
 import { BaseModel } from "./base.model";
@@ -15,9 +15,9 @@ export class HttpService {
         private userSettings: UserSettingsService,
     ) {}
 
-    async get(endpoint: string, params: HttpParams = new HttpParams()): Promise<any> {
+    async get(endpoint: string): Promise<any> {
         const headers = (new HttpHeaders()).append('authorization', 'Bearer ' + this.userSettings.getToken());
-        return this.http.get(Globals.API +  endpoint, { headers: headers, params: params })
+        return this.http.get(Globals.API +  endpoint, { headers: headers })
             .catch(HttpService.handleHttpError)
             .toPromise();
     }
