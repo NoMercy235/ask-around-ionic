@@ -16,7 +16,7 @@ import { Keyboard } from "@ionic-native/keyboard";
     ],
     imports: [
         BrowserModule,
-        IonicModule.forRoot(MyApp, { preloadModules: false }),
+        IonicModule.forRoot(MyApp, { preloadModules: false, scrollAssist: false, autoFocusAssist: false }),
         IonicStorageModule.forRoot(),
         SharedModule,
         PagesModule,
