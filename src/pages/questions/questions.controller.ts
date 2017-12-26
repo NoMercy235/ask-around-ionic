@@ -3,6 +3,7 @@ import { BaseController } from "../../app/shared/base.controller";
 import { HttpService } from "../../app/shared/http.service";
 import { Question } from "../../app/models/question.model";
 import { QueryParamsService } from "../../app/shared/query-params.service";
+import { Globals } from "../../app/shared/globals";
 
 @Injectable()
 export class QuestionsController extends BaseController {
@@ -12,6 +13,10 @@ export class QuestionsController extends BaseController {
 
     private page: number = 0;
     private limit: number = 10;
+    private sort: any = {
+        field: 'created_at',
+        order: Globals.SORTING.desc,
+    };
 
     constructor(
         public httpService: HttpService,
@@ -26,7 +31,8 @@ export class QuestionsController extends BaseController {
             pagination: {
                 page: this.page,
                 limit: this.limit,
-            }
+            },
+            sort: this.sort,
         };
 
         const link = this.queryParamsService.generateLink(this.apiEndpoint as string, params);

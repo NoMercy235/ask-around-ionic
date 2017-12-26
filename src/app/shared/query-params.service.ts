@@ -1,29 +1,25 @@
 import { Injectable } from '@angular/core';
+import { Utils } from "./utils";
 
 @Injectable()
 export class QueryParamsService {
 
     public generateLink(url: string, params: any): string {
-        return url + '?' + this.getParamsAsString(params, '', '');
+        return url + '?' + this.getParamsAsString(params);
     }
 
-    private getParamsAsString(params: any, path: string, urlParams: string): string {
-        if (!params) return '';
-        for (let key of Object.keys(params)) {
-            if (typeof params[key] === 'object') {
-                return this.getParamsAsString(params[key], path ? path + '[' + key + ']' : key, urlParams);
-            } else {
-                if (!path) {
-                    urlParams += this.encode(key, params[key]);
-                } else {
-                    urlParams += this.encode(`${path}[${key}]`, params[key]);
-                }
-            }
-        }
+    private getParamsAsString(params: any): string {
+        const flatObj = Utils.flattenObject(params, true);
+        let urlParams = '';
+        Object.keys(flatObj).forEach((key: string) => urlParams += this.encode(key, flatObj[key]));
         return urlParams;
     }
 
     private encode(key: string, value: string): string {
-        return encodeURIComponent(key) + '=' + encodeURIComponent(value) + '&';
+        let keyParts = key.split('.');
+        const firstKey = keyParts[0];
+        keyParts.splice(0, 1);
+        const trueKey = firstKey + keyParts.map((k: string) => '['+k+']').join('');
+        return encodeURIComponent(trueKey) + '=' + encodeURIComponent(value) + '&';
     }
 }

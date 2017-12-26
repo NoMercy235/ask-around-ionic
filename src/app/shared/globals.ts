@@ -16,6 +16,11 @@ export class Globals {
         }
     };
 
+    public static readonly SORTING = {
+        asc: 1,
+        desc: -1,
+    };
+
     public static KEY_CODES = {
         ENTER: 13,
     };
