@@ -6,6 +6,7 @@ import { SettingsPageModule } from "./settings/settings.module";
 import { MainPageModule } from "./main/main.module";
 import { AuthenticationPageModule } from "./authentication/authentication.module";
 import { RegisterPageModule } from "./register/register.module";
+import { NewQuestionPageModule } from "./new-question/new-question.module";
 
 @NgModule({
     imports: [
@@ -16,6 +17,7 @@ import { RegisterPageModule } from "./register/register.module";
         MyQuestionsPageModule,
         ProfilePageModule,
         SettingsPageModule,
+        NewQuestionPageModule,
     ],
     exports: [],
     providers: [],

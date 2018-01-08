@@ -33,4 +33,10 @@
     <ion-infinite-scroll *ngIf="showInfinite" (ionInfinite)="fetchMoreQuestions($event)">
         <ion-infinite-scroll-content></ion-infinite-scroll-content>
     </ion-infinite-scroll>
+
+    <ion-fab class="aa-fab">
+        <button ion-fab (click)="goToNewQuestion()">
+            <i class="ion-android-add"></i>
+        </button>
+    </ion-fab>
 </ion-content>

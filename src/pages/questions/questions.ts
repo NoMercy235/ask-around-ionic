@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { QuestionsController } from "./questions.controller";
 import { Question } from "../../app/models/question.model";
 import { LoadingService } from "../../app/shared/loading.service";
+import { NewQuestionPage } from "../new-question/new-question";
 
 @IonicPage()
 @Component({
@@ -39,5 +40,9 @@ export class QuestionsPage {
             this.questions.push(...data);
             infiniteScroll.complete();
         });
+    }
+
+    public goToNewQuestion(): void {
+        this.navCtrl.push(NewQuestionPage);
     }
 }
