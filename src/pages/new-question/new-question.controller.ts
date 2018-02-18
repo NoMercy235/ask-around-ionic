@@ -24,6 +24,7 @@ export class NewQuestionController extends BaseController {
             title: ['', [Validators.required]],
             content: ['', Validators.required],
             categories: [''],
+            _creator: [this.userSettings.getUser().id]
         });
     }
     // public async login(username: string, password: string): Promise<any> {

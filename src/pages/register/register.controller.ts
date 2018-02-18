@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { HttpService } from "../../app/shared/http.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { UserSettingsService } from "../../app/shared/user-settings.service";
-import { RegisterModel } from "./register.model";
+import { RegisterModel } from "../../app/models/register.model";
 
 @Injectable()
 export class RegisterController extends BaseController {

@@ -1,9 +1,13 @@
-import { User } from "./user.model";
+import { UserModel } from "./user.model";
 
-export class Question {
+export class QuestionModel {
     id: string;
     title: string;
     content: string;
-    created_at: Date;
-    _creator: User;
+    _creator: UserModel;
+    categories: string[];
+    scores: number[];
+    replies: string[];
+    created_at: string[];
+    updated_at: string[];
 }

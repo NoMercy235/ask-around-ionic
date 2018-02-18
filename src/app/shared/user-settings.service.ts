@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Storage } from "@ionic/storage";
+import { UserModel } from "../models/user.model";
 
 @Injectable()
 export class UserSettingsService {
 
     private token: string;
+    private user: UserModel;
 
     constructor(
         protected storage: Storage,
@@ -33,4 +35,13 @@ export class UserSettingsService {
     public getToken(): string {
         return this.token;
     }
+
+    public setUser(apiUser: any): void {
+        this.user = new UserModel(apiUser);
+    }
+
+    public getUser(): UserModel {
+        return this.user;
+    }
+
 }

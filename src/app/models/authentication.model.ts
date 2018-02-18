@@ -1,4 +1,4 @@
-import { BaseModel } from "../../app/shared/base.model";
+import { BaseModel } from "./base.model";
 
 export class AuthenticationModel extends BaseModel {
     public email: string;

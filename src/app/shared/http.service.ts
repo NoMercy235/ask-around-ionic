@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, ObservableInput } from "rxjs/Observable";
 import { Globals } from "./globals";
-import { BaseModel } from "./base.model";
+import { BaseModel } from "../models/base.model";
 import { UserSettingsService } from "./user-settings.service";
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/empty';

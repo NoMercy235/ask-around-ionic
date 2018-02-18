@@ -1,4 +1,4 @@
-import { BaseModel } from "../../app/shared/base.model";
+import { BaseModel } from "./base.model";
 
 export class RegisterModel extends BaseModel {
     public firstName: string;
