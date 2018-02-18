@@ -24,24 +24,33 @@ export class AuthenticationController extends BaseController {
         this.fg = this.formBuilder.group({
             email: ['', [Validators.required, Validators.email]],
             password: ['', Validators.required],
+            remember_me: [false],
         });
     }
 
     public hasToken(): Promise<boolean> {
-        return this.userSettings.getStorage('authToken').then((token: string) => {
+        return this.userSettings.getStorage('authToken').then(async (token: string) => {
             if (token) {
                 this.userSettings.setToken(token);
-                return true;
+                const user = await this.httpService.get('/api/user/get_user_with_token');
+                if (user) {
+                    this.userSettings.setUser(user);
+                    return true;
+                } else {
+                    // TODO: show error;
+                    return false;
+                }
             } else {
                 return false;
             }
         });
     }
 
-    public async login(username: string, password: string): Promise<any> {
+    public async login(): Promise<any> {
+        const values = this.fg.value;
         const body: AuthenticationModel = {
-            email: username,
-            password: password
+            email: values.email,
+            password: values.password,
         };
 
         const result = await this.httpService.post(this.getApiEndpoint(), body);
@@ -49,8 +58,9 @@ export class AuthenticationController extends BaseController {
         if (result) {
             this.userSettings.setUser(result.user);
             this.userSettings.setToken(result.token);
-            // TODO: if remember me is set
-            // this.userSettings.setStorage('authToken', result.token);
+            if (values.remember_me) {
+                this.userSettings.setStorage('authToken', result.token);
+            }
         }
 
         return result;

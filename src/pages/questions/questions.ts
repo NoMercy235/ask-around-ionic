@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { QuestionsController } from "./questions.controller";
-import { Question } from "../../app/models/question.model";
 import { LoadingService } from "../../app/shared/loading.service";
 import { NewQuestionPage } from "../new-question/new-question";
+import { QuestionModel } from "../../app/models/question.model";
 
 @IonicPage()
 @Component({
@@ -11,7 +11,7 @@ import { NewQuestionPage } from "../new-question/new-question";
     templateUrl: 'questions.html',
 })
 export class QuestionsPage {
-    public questions: Question[];
+    public questions: QuestionModel[];
     public showInfinite: boolean = true;
 
     private loadingId: number;
@@ -25,14 +25,14 @@ export class QuestionsPage {
 
     public ionViewDidLoad(): void {
         this.loadingId = this.loadingService.create({ content: 'Please wait', dismissOnPageChange: true });
-        this.questionsCtrl.getQuestions().then((data: Question[]) => {
+        this.questionsCtrl.getQuestions().then((data: QuestionModel[]) => {
             this.questions = data;
             this.loadingService.dismiss(this.loadingId);
         });
     }
 
     public fetchMoreQuestions(infiniteScroll: any): void {
-        this.questionsCtrl.getQuestions(true).then((data: Question[]) => {
+        this.questionsCtrl.getQuestions(true).then((data: QuestionModel[]) => {
             if (!data.length) {
                 this.showInfinite = false;
                 return;

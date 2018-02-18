@@ -56,9 +56,7 @@ export class AuthenticationPage {
         }
 
         const loadingId = this.loadingService.create({ content: 'Please wait', dismissOnPageChange: true });
-
-        const formValues = this.authenticateCtrl.fg.value;
-        const result = await this.authenticateCtrl.login(formValues.email, formValues.password);
+        const result = await this.authenticateCtrl.login();
 
         if (!result) {
             this.toastService.get(this.toastId).setMessage('Email or password are incorrect.');

@@ -15,14 +15,18 @@
 
     <div col-10 offset-1 class="aa-login-container">
         <form [formGroup]="authenticateCtrl.fg">
-            <ion-item class="aa-input">
+            <ion-item class="aa-item">
                 <ion-label floating>Email</ion-label>
                 <ion-input [type]="'text'" [formControlName]="'email'"></ion-input>
             </ion-item>
 
-            <ion-item class="aa-input">
+            <ion-item class="aa-item">
                 <ion-label floating>Password</ion-label>
                 <ion-input [type]="'password'" [formControlName]="'password'" (keypress)="handleKeyPress($event.keyCode)"></ion-input>
+            </ion-item>
+            <ion-item class="aa-item aa-text">
+                <ion-label>Remember me</ion-label>
+                <ion-checkbox class="aa-checkbox" [formControlName]="'remember_me'"></ion-checkbox>
             </ion-item>
         </form>
     </div>
